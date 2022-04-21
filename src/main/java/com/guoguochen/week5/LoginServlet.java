@@ -67,10 +67,27 @@ public class LoginServlet extends HttpServlet {
             UserDao userDao = new UserDao();
             User user = userDao.findByUsernamePassword(con,username,password);
             if(user != null){
-                // login success
-                //setp 8
-                request.setAttribute("user",user);
-                //step 9
+                String rememberMe = request.getParameter("rememberMe");
+                if(rememberMe!=null && rememberMe.equals("1")){
+                    Cookie usernameCookie = new Cookie("cUsername",user.getUsername());
+                    Cookie passwordCookie = new Cookie("cPassword",user.getPassword());
+                    Cookie rememberMeCookie = new Cookie("cRememberMe",rememberMe);
+
+                    usernameCookie.setMaxAge(60*60*24);
+                    passwordCookie.setMaxAge(60*60*24);
+                    rememberMeCookie.setMaxAge(60*60*24);
+
+                    response.addCookie(usernameCookie);
+                    response.addCookie(passwordCookie);
+                    response.addCookie(rememberMeCookie);
+                }
+
+                HttpSession session = request.getSession();
+                System.out.println("session-->"+session.getId());
+                session.setMaxInactiveInterval(10);
+
+                session.setAttribute("user",user);
+
                 request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
 
             }else{

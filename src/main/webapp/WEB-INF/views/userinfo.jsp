@@ -8,7 +8,16 @@
 
 <%@include file="header.jsp"%>
 <h1> User Info</h1>
-<% User u = (User)request.getAttribute("user");%>
+<%
+    Cookie [] allCookies= request.getCookies();
+    for(Cookie c : allCookies){
+        out.println("<br/>"+c.getName()+" --- "+c.getValue());
+    }
+%>
+<%
+    User u = (User) session.getAttribute("user");
+
+%>
 <table>
     <tr>
         <td>Username:</td><td><%=u.getUsername()%></td>
