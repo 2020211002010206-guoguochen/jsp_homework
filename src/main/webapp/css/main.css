@@ -8,7 +8,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     position: relative;
-    font-weight: 400px;
+    font-weight: 400;
 }
 
 ul li {
@@ -1538,7 +1538,7 @@ h2.title {
 }
 
 .breadcrumbs .breadcrumb>li+li:before {
-    content: " ";
+    content: "ï¿½";
 }
 
 #cart_items .cart_info {
