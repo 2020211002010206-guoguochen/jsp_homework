@@ -16,7 +16,7 @@
     name:<input type="text" name="name"/><br/>
     Id: <input type="text" name="=id"/>
     <br/>
-    <input type="submit" value="Submit"><!-- what  is method ? GET Why? default is GET
+    <input type="submit" value="Submit"><!-- what is method ? GET Why? default is GET
     we need to change to post - now its post
     -->
 </form>
